@@ -3,8 +3,9 @@ provider "aws" {
     secret_key = "${var.secret_key}"
     region     = "us-east-1"
 }
-#resource "aws_instance" "puppetdb" {
-#    ami           = "ami-408c7f28"
-#    instance_type = "t1.micro"
-#    count         = 2
-#}
+resource "aws_instance" "puppetdb" {
+    ami           = "ami-08842d60"
+    instance_type = "t2.micro"
+    subnet_id     = "${aws_subnet.database.id}"
+    #count         = 2
+}
