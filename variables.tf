@@ -5,3 +5,6 @@ variable "key_name" {}
 variable "region" {
     default = "us-east-1"
 }
+variable "nat_ami" {
+    default = "ami-2e1bc047"
+}
