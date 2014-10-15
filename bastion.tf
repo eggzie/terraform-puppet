@@ -11,11 +11,11 @@ resource "aws_security_group" "bastion" {
     }
 }
 resource "aws_instance" "bastion" {
-    ami               = "ami-08842d60"
-    instance_type     = "t2.micro"
-    key_name          = "${var.key_name}"
-    security_groups   = ["${aws_security_group.bastion.id}"]
-    subnet_id         = "${aws_subnet.puppet-servers.id}"
+    ami             = "ami-08842d60"
+    instance_type   = "t2.micro"
+    key_name        = "${var.key_name}"
+    security_groups = ["${aws_security_group.bastion.id}"]
+    subnet_id       = "${aws_subnet.puppet-servers.id}"
 }
 resource "aws_eip" "bastion" {
     instance = "${aws_instance.bastion.id}"
