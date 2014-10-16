@@ -9,3 +9,9 @@ resource "aws_instance" "puppetdb" {
     subnet_id     = "${aws_subnet.database.id}"
     #count         = 2
 }
+resource "aws_instance" "puppetdb-api" {
+    ami           = "ami-08842d60"
+    instance_type = "t2.micro"
+    subnet_id     = "${aws_subnet.puppet-servers.id}"
+    #count         = 2
+}
