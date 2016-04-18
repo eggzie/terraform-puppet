@@ -9,6 +9,12 @@ resource "aws_security_group" "bastion" {
         protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
+    egress {
+        from_port = 0
+         to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
 }
 resource "aws_instance" "bastion" {
     ami             = "ami-08842d60"
@@ -16,6 +22,9 @@ resource "aws_instance" "bastion" {
     key_name        = "${var.key_name}"
     security_groups = ["${aws_security_group.bastion.id}"]
     subnet_id       = "${aws_subnet.puppet-servers.id}"
+    tags {
+        Name = "bastion"
+    }
 }
 resource "aws_eip" "bastion" {
     instance = "${aws_instance.bastion.id}"
